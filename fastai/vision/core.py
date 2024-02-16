@@ -283,6 +283,7 @@ class BBoxLabeler(Transform):
         return self._call('decodes', x, **kwargs)
 
     def decodes(self, x:TensorMultiCategory):
+        x = x.int()
         self.lbls = [self.vocab[a] for a in x]
         return x if self.bbox is None else LabeledBBox(self.bbox, self.lbls)
 
